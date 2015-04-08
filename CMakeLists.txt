@@ -4,8 +4,9 @@ find_package(MPI REQUIRED)
 
 set(CMAKE_BUILD_TYPE Release)
 add_definitions("-std=c++1y")
+add_definitions( ${MPI_COMPILE_FLAGS})
 find_package(Boost COMPONENTS mpi serialization REQUIRED)
+include_directories( ${MPI_INCLUDE_PATH})
 include_directories(${Boost_INCLUDE_DIR})
-add_executable(pp ping_pong.cpp)
+add_executable(pp ping_pong/ping_pong.cpp)
 target_link_libraries(pp ${MPI_LIBRARIES} ${Boost_LIBRARIES})
-
